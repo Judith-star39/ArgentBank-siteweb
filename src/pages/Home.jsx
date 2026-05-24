@@ -2,7 +2,7 @@ import iconChat from '../assets/icon-chat.webp'
 import iconMoney from '../assets/icon-money.webp'
 import iconSecurity from '../assets/icon-security.webp'
 import FeatureItem from '../components/Feature'
-import '../styles/style.css'
+import  '../styles/style.css'
 
 const features = [
   {

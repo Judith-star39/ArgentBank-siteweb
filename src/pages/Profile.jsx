@@ -1,7 +1,8 @@
-import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
 import { fetchProfile } from '../store/userSlice'
 import Account from '../components/Account'
+import EditUsername from '../components/EditUsername'
 
 const accounts = [
   {
@@ -27,6 +28,7 @@ const accounts = [
 function Profile() {
   const dispatch = useDispatch()
   const { firstName, lastName } = useSelector((state) => state.user)
+  const [isEditing, setIsEditing] = useState(false)
 
   useEffect(() => {
     dispatch(fetchProfile())
@@ -35,8 +37,14 @@ function Profile() {
   return (
     <main className="main bg-dark">
       <div className="header">
+         {isEditing ? (
+          <EditUsername onClose={() => setIsEditing(false)} />
+        ) : (
+          <>
         <h1>Welcome back<br />{firstName} {lastName}!</h1>
-        <button className="edit-button">Edit Name</button>
+        <button className="edit-button" onClick={() => setIsEditing(true)} >Edit Name</button>
+        </>
+        )}
       </div>
       <h2 className="sr-only">Accounts</h2>
       {accounts.map((account) => (
